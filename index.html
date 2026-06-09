@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechHub Computer Center</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate.css for WOW.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+</head>
+
+<style>
+    :root {
+        --primary-color: #007bff;
+        --secondary-color: #00d4ff;
+        --accent-color: #6f42c1;
+        --dark-color: #1a1a2e;
+        --light-color: #f8f9fc;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        background: linear-gradient(135deg, #f0f7ff, #e6f0ff, #ccdfff);
+        font-family: 'Poppins', sans-serif;
+        color: #333;
+        overflow-x: hidden;
+    }
+
+    /* Navbar */
+    .navbar {
+        padding: 20px 0;
+        height: 92px;
+        background: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+        padding: 12px 0;
+        height: 70px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar .nav-link {
+        margin-left: 20px;
+        color: var(--accent-color);
+        font-weight: 500;
+        position: relative;
+    }
+
+    .navbar .nav-link:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        transition: width 0.3s ease;
+    }
+
+    .navbar .nav-link:hover {
+        color: var(--primary-color);
+    }
+
+    .navbar .nav-link:hover:after {
+        width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+        position: relative;
+        height: 100vh;
+        background: url("https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80") no-repeat center center/cover;
+        display: flex;
+        align-items: center;
+    }
+
+    .hero .overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 800px;
+        margin: auto;
+    }
+
+    .hero-content .tagline {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--secondary-color);
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 6px 14px;
+        border-radius: 30px;
+        display: inline-block;
+        backdrop-filter: blur(5px);
+    }
+
+    .hero h1 {
+        font-size: 52px;
+        font-weight: 800;
+        line-height: 1.3;
+        color: #fff;
+        min-height: 130px;
+    }
+
+    .hero h1 span {
+        background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .typed-cursor {
+        font-size: 52px;
+        color: var(--secondary-color);
+        opacity: 1;
+        animation: typedjsBlink 0.7s infinite;
+    }
+
+    @keyframes typedjsBlink {
+        50% {
+            opacity: 0.0;
+        }
+    }
+
+    .hero p {
+        margin-top: 20px;
+        font-size: 18px;
+        line-height: 1.6;
+        color: #f0f0f0;
+    }
+
+    .cta-buttons {
+        margin-top: 30px;
+    }
+
+    .btn.primary {
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        color: #fff;
+        border-radius: 50px;
+        padding: 12px 28px;
+        margin-right: 12px;
+        border: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+    }
+
+    .btn.primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 7px 20px rgba(0, 212, 255, 0.4);
+    }
+
+    .btn.secondary {
+        border: 2px solid var(--accent-color);
+        color: var(--accent-color);
+        border-radius: 50px;
+        padding: 12px 28px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .btn.secondary:hover {
+        background: var(--accent-color);
+        color: #fff;
+        transform: translateY(-3px);
+        box-shadow: 0 7px 15px rgba(111, 66, 193, 0.3);
+    }
+
+    /* Mission Section */
+    .mission-section {
+        position: relative;
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        color: #fff;
+        overflow: hidden;
+        padding: 80px 20px;
+        text-align: center;
+    }
+
+    .mission-subtitle {
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 13px;
+        letter-spacing: 2px;
+        color: #00d4ff;
+        display: inline-block;
+        margin-bottom: 5px;
+        opacity: 0.9;
+    }
+
+    .mission-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        line-height: 1.2;
+    }
+
+    .mission-title span {
+        color: #00d4ff;
+    }
+
+    .divider {
+        width: 45px;
+        height: 3px;
+        background: #00d4ff;
+        border-radius: 2px;
+        margin: 10px auto 15px auto;
+    }
+
+    .mission-text {
+        font-size: 15px;
+        max-width: 640px;
+        margin: 0 auto 10px auto;
+        line-height: 1.5;
+        color: #f5f5f5;
+        opacity: 0.95;
+    }
+
+    .btn-gradient {
+        background: linear-gradient(90deg, #00d4ff, #007bff);
+        color: #fff;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+    .btn-gradient:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Courses Section */
+    .courses-section {
+        padding: 100px 0;
+        background: #fff;
+    }
+
+    .section-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    .section-title span {
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .course-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        margin-bottom: 30px;
+        height: 100%;
+    }
+
+    .course-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .course-img {
+        height: 200px;
+        overflow: hidden;
+    }
+
+    .course-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .course-card:hover .course-img img {
+        transform: scale(1.1);
+    }
+
+    .course-content {
+        padding: 25px;
+    }
+
+    .course-category {
+        display: inline-block;
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .course-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #1a1a2e;
+    }
+
+    .course-desc {
+        color: #666;
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+
+    .course-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 15px;
+        border-top: 1px solid #eee;
+    }
+
+    .course-duration,
+    .course-level {
+        font-size: 12px;
+        color: #777;
+    }
+
+    .course-duration i,
+    .course-level i {
+        margin-right: 5px;
+        color: var(--primary-color);
+    }
+
+    /* Features Section */
+    .features-section {
+        padding: 80px 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+
+    .feature-item {
+        text-align: center;
+        padding: 30px;
+        margin-bottom: 30px;
+    }
+
+    .feature-icon {
+        width: 80px;
+        height: 80px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 30px;
+        color: white;
+        transition: all 0.3s ease;
+    }
+
+    .feature-item:hover .feature-icon {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.1);
+    }
+
+    .feature-item h4 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+
+    .feature-item p {
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.6;
+    }
+
+    /* Services Section */
+    .services {
+        background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+        color: #fff;
+        padding: 80px 0;
+    }
+
+    .services .section-title {
+        color: #fff;
+    }
+
+    .service-card {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(12px);
+        border-radius: 20px;
+        padding: 30px 20px;
+        text-align: center;
+        color: #fff;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 100%;
+        margin-bottom: 30px;
+    }
+
+    .service-card:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .service-icon {
+        font-size: 40px;
+        color: #00d4ff;
+        margin-bottom: 15px;
+    }
+
+    .service-card h4 {
+        font-weight: 700;
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+    }
+
+    .service-card p {
+        font-size: 15px;
+        line-height: 1.6;
+        color: #e0e0e0;
+    }
+
+    /* Why Choose Us Section */
+    .why-us-section {
+        background: #f8f9fa;
+        padding: 80px 0;
+    }
+
+    .why-us-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 30px;
+        padding: 20px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+    }
+
+    .why-us-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .why-us-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 20px;
+        color: white;
+        font-size: 24px;
+        flex-shrink: 0;
+    }
+
+    .why-us-content h4 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #1a1a2e;
+    }
+
+    .why-us-content p {
+        color: #666;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    /* Testimonials Section */
+    .testimonials-section {
+        padding: 80px 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .testimonial-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .testimonial-text {
+        font-style: italic;
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .testimonial-text:before {
+        content: '"';
+        font-size: 60px;
+        color: var(--primary-color);
+        position: absolute;
+        top: -20px;
+        left: -10px;
+        opacity: 0.3;
+        font-family: serif;
+    }
+
+    .testimonial-author {
+        display: flex;
+        align-items: center;
+    }
+
+    .author-img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 15px;
+    }
+
+    .author-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .author-info h5 {
+        font-weight: 700;
+        margin-bottom: 5px;
+        color: #1a1a2e;
+    }
+
+    .author-info p {
+        color: #777;
+        font-size: 14px;
+        margin: 0;
+    }
+
+    /* Contact Section */
+    .contact-section {
+        padding: 80px 0;
+        background: #1a1a2e;
+        color: white;
+    }
+
+    .contact-form {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 40px;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+    }
+
+    .form-control {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        padding: 12px 15px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+    }
+
+    .form-control:focus {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        color: white;
+    }
+
+    .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Footer */
+    .footer {
+        background: linear-gradient(135deg, #0f0c29, #302b63);
+        color: #fff;
+        padding: 60px 0 20px;
+    }
+
+    .footer h5 {
+        font-weight: 700;
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .footer h5:after {
+        content: '';
+        position: absolute;
+        width: 40px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        bottom: -8px;
+        left: 0;
+    }
+
+    .footer ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer ul li {
+        margin-bottom: 10px;
+    }
+
+    .footer ul li a {
+        color: #ccc;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .footer ul li a:hover {
+        color: var(--primary-color);
+        padding-left: 5px;
+    }
+
+    .social-icons {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .social-icons a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        transform: translateY(-3px);
+    }
+
+    .copyright {
+        text-align: center;
+        padding-top: 30px;
+        margin-top: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 14px;
+        color: #aaa;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        .navbar {
+            padding: 15px 0;
+            height: auto;
+            min-height: 70px;
+        }
+
+        .navbar-brand img {
+            height: 50px;
+        }
+
+        .hero {
+            height: 70vh;
+            min-height: 500px;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            min-height: 80px;
+        }
+
+        .typed-cursor {
+            font-size: 32px;
+        }
+
+        .hero p {
+            font-size: 16px;
+        }
+
+        .hero-content .tagline {
+            font-size: 14px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+        }
+
+        .course-card {
+            margin-bottom: 20px;
+        }
+
+        .contact-form {
+            padding: 20px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .hero {
+            height: 60vh;
+            min-height: 450px;
+        }
+
+        .hero h1 {
+            font-size: 28px;
+            min-height: 70px;
+        }
+
+        .typed-cursor {
+            font-size: 28px;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+        }
+
+        .cta-buttons .btn {
+            width: 100%;
+            margin-right: 0;
+            margin-bottom: 10px;
+        }
+    }
+</style>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <i class="fas fa-laptop-code me-2" style="font-size: 2rem; color: var(--primary-color);"></i>
+                <span style="font-weight: 700; font-size: 1.5rem;">TechHub</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#courses">Courses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero d-flex align-items-center text-center text-white">
+        <div class="overlay"></div>
+        <div class="container hero-content">
+            <p class="tagline" data-aos="fade-down" data-aos-delay="200">Premier Computer Education Center</p>
+            <h1 data-aos="fade-up" data-aos-delay="400">
+                <span id="typed-text"></span>
+            </h1>
+            <p class="mt-4" data-aos="fade-up" data-aos-delay="600">
+                Master computer skills with industry-expert instructors. From basic computing to advanced programming,
+                we provide comprehensive training for all skill levels.
+            </p>
+            <div class="cta-buttons" data-aos="fade-up" data-aos-delay="800">
+                <a href="#courses" class="btn primary pulse-glow">Explore Courses</a>
+                <a href="#contact" class="btn secondary">Enroll Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section id="mission" class="mission-section text-center">
+        <div class="container">
+            <span class="mission-subtitle" data-aos="fade-up">OUR VISION</span>
+            <h2 class="mission-title" data-aos="fade-up" data-aos-delay="200">Empowering Through <span>Technology
+                    Education</span></h2>
+            <div class="divider" data-aos="fade-up" data-aos-delay="300"></div>
+            <p class="mission-text" data-aos="fade-up" data-aos-delay="400">
+                At TechHub Computer Center, we're committed to bridging the digital divide by providing
+                accessible, quality computer education to everyone. Our mission is to equip students with
+                practical skills that empower them in today's digital world.
+            </p>
+            <a href="#courses" class="btn btn-gradient" data-aos="fade-up" data-aos-delay="500">View All Courses</a>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="courses-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Our <span>Courses</span></h2>
+            <div class="row">
+                <!-- Course 1 -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="course-card">
+                        <div class="course-img">
+                            <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                alt="Programming">
+                        </div>
+                        <div class="course-content">
+                            <span class="course-category">Programming</span>
+                            <h3 class="course-title">Full Stack Web Development</h3>
+                            <p class="course-desc">
+                                Master HTML, CSS, JavaScript, React, Node.js, and MongoDB to build complete web
+                                applications.
+                            </p>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="far fa-clock"></i> 3 Months</span>
+                                <span class="course-level"><i class="fas fa-signal"></i> Intermediate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 2 -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="course-card">
+                        <div class="course-img">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                alt="Data Science">
+                        </div>
+                        <div class="course-content">
+                            <span class="course-category">Data Science</span>
+                            <h3 class="course-title">Data Analysis with Python</h3>
+                            <p class="course-desc">
+                                Learn Python, Pandas, NumPy, and data visualization tools to analyze and visualize data.
+                            </p>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="far fa-clock"></i> 2 Months</span>
+                                <span class="course-level"><i class="fas fa-signal"></i> Beginner</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 3 -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="course-card">
+                        <div class="course-img">
+                            <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                alt="Design">
+                        </div>
+                        <div class="course-content">
+                            <span class="course-category">Design</span>
+                            <h3 class="course-title">Graphic Design Masterclass</h3>
+                            <p class="course-desc">
+                                Professional training in Adobe Photoshop, Illustrator, and InDesign for graphic design.
+                            </p>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="far fa-clock"></i> 2.5 Months</span>
+                                <span class="course-level"><i class="fas fa-signal"></i> All Levels</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 4 -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="course-card">
+                        <div class="course-img">
+                            <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                alt="Networking">
+                        </div>
+                        <div class="course-content">
+                            <span class="course-category">Networking</span>
+                            <h3 class="course-title">CCNA Networking Fundamentals</h3>
+                            <p class="course-desc">
+                                Prepare for Cisco CCNA certification with comprehensive networking and security
+                                training.
+                            </p>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="far fa-clock"></i> 4 Months</span>
+                                <span class="course-level"><i class="fas fa-signal"></i> Advanced</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 5 -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="course-card">
+                        <div class="course-img">
+                            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                alt="Office">
+                        </div>
+                        <div class="course-content">
+                            <span class="course-category">Office Skills</span>
+                            <h3 class="course-title">Microsoft Office Professional</h3>
+                            <p class="course-desc">
+                                Master Word, Excel, PowerPoint, and Outlook for professional office productivity.
+                            </p>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="far fa-clock"></i> 1.5 Months</span>
+                                <span class="course-level"><i class="fas fa-signal"></i> Beginner</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 6 -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="course-card">
+                        <div class="course-img">
+                            <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                alt="Cybersecurity">
+                        </div>
+                        <div class="course-content">
+                            <span class="course-category">Security</span>
+                            <h3 class="course-title">Cybersecurity Essentials</h3>
+                            <p class="course-desc">
+                                Learn to protect systems, networks, and programs from digital attacks.
+                            </p>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="far fa-clock"></i> 3 Months</span>
+                                <span class="course-level"><i class="fas fa-signal"></i> Intermediate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Why Choose <span>TechHub</span></h2>
+            <div class="row">
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h4>Expert Instructors</h4>
+                        <p>Industry professionals with years of teaching experience</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <h4>Modern Labs</h4>
+                        <p>Fully equipped computer labs with latest software</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h4>Certification</h4>
+                        <p>Industry-recognized certificates upon course completion</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h4>Career Support</h4>
+                        <p>Job placement assistance and career counseling</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title text-center mb-5" data-aos="fade-up">Our <span>Services</span></h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <i class="fas fa-graduation-cap service-icon"></i>
+                        <h4>Classroom Training</h4>
+                        <p>Interactive classroom sessions with hands-on practice and individual attention</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
+                        <i class="fas fa-desktop service-icon"></i>
+                        <h4>Online Courses</h4>
+                        <p>Flexible online learning with recorded lectures and live doubt sessions</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card">
+                        <i class="fas fa-briefcase service-icon"></i>
+                        <h4>Corporate Training</h4>
+                        <p>Customized training programs for corporate teams and organizations</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-card">
+                        <i class="fas fa-project-diagram service-icon"></i>
+                        <h4>Project Guidance</h4>
+                        <p>Expert guidance for academic and industrial projects</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-card">
+                        <i class="fas fa-tools service-icon"></i>
+                        <h4>Technical Support</h4>
+                        <p>Hardware and software troubleshooting and maintenance services</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-card">
+                        <i class="fas fa-certificate service-icon"></i>
+                        <h4>Certification Exams</h4>
+                        <p>Authorized center for international certification exams</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="about" class="why-us-section">
+        <div class="container">
+            <h2 class="section-title text-center mb-5" data-aos="fade-up">Why Students <span>Choose Us</span></h2>
+            <div class="row">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="why-us-item">
+                        <div class="why-us-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="why-us-content">
+                            <h4>Proven Track Record</h4>
+                            <p>15+ years of excellence in computer education with thousands of successful students</p>
+                        </div>
+                    </div>
+                    <div class="why-us-item">
+                        <div class="why-us-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <div class="why-us-content">
+                            <h4>Personalized Attention</h4>
+                            <p>Small batch sizes ensuring individual attention and customized learning pace</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="why-us-item">
+                        <div class="why-us-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="why-us-content">
+                            <h4>Flexible Timings</h4>
+                            <p>Morning, evening, and weekend batches to accommodate working professionals and students
+                            </p>
+                        </div>
+                    </div>
+                    <div class="why-us-item">
+                        <div class="why-us-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="why-us-content">
+                            <h4>Updated Curriculum</h4>
+                            <p>Regularly updated course content matching current industry requirements</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title text-center mb-5" data-aos="fade-up">Student <span>Testimonials</span></h2>
+            <div class="swiper testimonialsSwiper" data-aos="fade-up" data-aos-delay="200">
+                <div class="swiper-wrapper">
+                    <!-- Testimonial 1 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">
+                                "The web development course at TechHub transformed my career. The practical approach and
+                                expert guidance helped me land my dream job as a front-end developer."
+                            </p>
+                            <div class="testimonial-author">
+                                <div class="author-img">
+                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Student">
+                                </div>
+                                <div class="author-info">
+                                    <h5>Rahul Sharma</h5>
+                                    <p>Web Developer at TechCorp</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">
+                                "Excellent faculty and state-of-the-art labs. The data science course gave me the skills
+                                I needed to transition into analytics. Highly recommended!"
+                            </p>
+                            <div class="testimonial-author">
+                                <div class="author-img">
+                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Student">
+                                </div>
+                                <div class="author-info">
+                                    <h5>Priya Patel</h5>
+                                    <p>Data Analyst at DataInsights</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">
+                                "As a complete beginner, I was nervous about learning computers. The instructors were
+                                patient and supportive. Now I'm confident in my digital skills."
+                            </p>
+                            <div class="testimonial-author">
+                                <div class="author-img">
+                                    <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Student">
+                                </div>
+                                <div class="author-info">
+                                    <h5>Ankit Verma</h5>
+                                    <p>Office Administrator</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title text-center mb-5" data-aos="fade-up">Get In <span>Touch</span></h2>
+            <div class="row">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="contact-form">
+                        <h4 class="mb-4">Enquiry Form</h4>
+                        <form id="contactForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Your Name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" placeholder="Your Email" required>
+                                </div>
+                            </div>
+                            <input type="tel" class="form-control" placeholder="Phone Number" required>
+                            <select class="form-control" required>
+                                <option value="" disabled selected>Select Course Interest</option>
+                                <option>Web Development</option>
+                                <option>Data Science</option>
+                                <option>Graphic Design</option>
+                                <option>Networking</option>
+                                <option>Office Professional</option>
+                                <option>Cybersecurity</option>
+                            </select>
+                            <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
+                            <button type="submit" class="btn btn-primary w-100 mt-3">Submit Enquiry</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <h4 class="mb-4">Contact Information</h4>
+                    <div class="contact-info">
+                        <div class="mb-4">
+                            <h5><i class="fas fa-map-marker-alt me-2"></i> Address</h5>
+                            <p>123 Tech Street, Digital District<br>City, State 12345</p>
+                        </div>
+                        <div class="mb-4">
+                            <h5><i class="fas fa-phone me-2"></i> Phone</h5>
+                            <p>+1 (234) 567-8900<br>+1 (234) 567-8901</p>
+                        </div>
+                        <div class="mb-4">
+                            <h5><i class="fas fa-envelope me-2"></i> Email</h5>
+                            <p>info@techhub.com<br>admissions@techhub.com</p>
+                        </div>
+                        <div class="mb-4">
+                            <h5><i class="fas fa-clock me-2"></i> Working Hours</h5>
+                            <p>Monday - Friday: 9:00 AM - 8:00 PM<br>Saturday: 10:00 AM - 6:00 PM<br>Sunday: 10:00 AM -
+                                4:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0" data-aos="fade-up">
+                    <h5>TechHub Computer Center</h5>
+                    <p>Providing quality computer education since 2008. Empowering students with practical skills for
+                        the digital age.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="100">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#courses">Courses</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="200">
+                    <h5>Popular Courses</h5>
+                    <ul>
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">Data Science</a></li>
+                        <li><a href="#">Graphic Design</a></li>
+                        <li><a href="#">Networking</a></li>
+                        <li><a href="#">Office Professional</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <h5>Newsletter</h5>
+                    <p>Subscribe to get updates on new courses and offers.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Your Email">
+                        <button class="btn btn-primary" type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright" data-aos="fade-up">
+                <p>&copy; 2023 TechHub Computer Center. All Rights Reserved. | <a href="#" class="text-white">Privacy
+                        Policy</a> | <a href="#" class="text-white">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Typed.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Initialize Typed.js
+        var typed = new Typed('#typed-text', {
+            strings: [
+                "Master Computer Skills.^1000\n^1000\nBuild Your Future.",
+                "Learn from Experts.^1000\n^1000\nExcel in Technology.",
+                "Career-Focused Courses.^1000\n^1000\nIndustry-Ready Training."
+            ],
+            typeSpeed: 50,
+            backSpeed: 30,
+            backDelay: 2000,
+            loop: true,
+            smartBackspace: true,
+            showCursor: true,
+            cursorChar: '|'
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Initialize Testimonials Swiper
+        var testimonialsSwiper = new Swiper(".testimonialsSwiper", {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 5000,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                }
+            },
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Thank you for your enquiry! We will contact you shortly.');
+            this.reset();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href.length > 1) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                        const targetPosition = target.offsetTop - navbarHeight;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
